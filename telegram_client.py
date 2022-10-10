@@ -10,7 +10,7 @@ api_hash = config('api_hash')
 
 
 async def main(msg_to_chat):
-    await client.send_message("test_happy_birthday", msg_to_chat)
+    await client.send_message(config('channel_title'), msg_to_chat)
 
 
 if __name__ == '__main__':
