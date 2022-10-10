@@ -7,9 +7,9 @@ from time import sleep
 
 
 happy_birthday_bot = telebot.TeleBot(config('bot_uid'))
-chat_title = f"@{config('test_happy_birthday')}"
+chat_title = f"@{config('channel_title')}"
 gs_session = gspread.service_account(filename=config('google_token_filename'))
-gs_table = gs_session.open('google_table_title')
+gs_table = gs_session.open(config('google_table_title'))
 
 
 def get_current_date() -> str:
@@ -26,7 +26,7 @@ def get_employees() -> list:
         Функция получения списка сотрудников из google таблицы
     :return: список словарей, каждый словарь - описание сотрудника
     """
-    employees_sheet = gs_table.worksheet("google_employees")
+    employees_sheet = gs_table.worksheet(config("google_employees"))
     return employees_sheet.get_all_records()
 
 
@@ -35,7 +35,7 @@ def get_congrats() -> list:
         Функция получения списка поздравлений
     :return: Список поздравлений
     """
-    congrats_sheet = gs_table.worksheet("google_congrats")
+    congrats_sheet = gs_table.worksheet(config("google_congrats"))
     return congrats_sheet.get_all_values()
 
 
